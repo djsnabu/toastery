@@ -1,0 +1,16 @@
+import { getCollection } from 'astro:content';
+
+export async function getPublishedPosts() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  );
+}
+
+export function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}

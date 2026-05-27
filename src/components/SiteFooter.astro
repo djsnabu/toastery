@@ -1,0 +1,74 @@
+---
+import { site } from '../content/copy.en';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer section--black">
+  <div class="container site-footer__inner">
+    <p class="site-footer__brand">
+      <img
+        src="/images/logo/logo-white-underline.png"
+        alt="Toastery"
+        width="180"
+        height="40"
+      />
+    </p>
+    <p class="label label--light">{site.location}</p>
+  </div>
+  <nav class="container site-footer__nav" aria-label="Footer">
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/#find-us">Find us</a>
+    <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+      {site.instagramHandle}
+    </a>
+  </nav>
+  <p class="container site-footer__copy">
+    <span>{site.hashtag}</span>
+    <span aria-hidden="true"> · </span>
+    <span>© {year} Toastery</span>
+  </p>
+</footer>
+
+<style>
+  .site-footer {
+    padding-block: var(--space-xl);
+  }
+
+  .site-footer__inner {
+    margin-bottom: var(--space-md);
+  }
+
+  .site-footer__brand img {
+    height: 32px;
+    width: auto;
+    margin-bottom: var(--space-sm);
+  }
+
+  .site-footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(251, 248, 249, 0.12);
+  }
+
+  .site-footer__nav a {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(251, 248, 249, 0.85);
+  }
+
+  .site-footer__nav a:hover {
+    color: var(--toastery-pink);
+  }
+
+  .site-footer__copy {
+    margin: var(--space-md) 0 0;
+    font-size: 0.875rem;
+    color: rgba(251, 248, 249, 0.5);
+  }
+</style>

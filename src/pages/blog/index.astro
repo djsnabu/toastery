@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UnderlineHeading from '../../components/UnderlineHeading.astro';
+import PostCard from '../../components/PostCard.astro';
+import { journal } from '../../content/copy.en';
+import { getPublishedPosts } from '../../utils/blog';
+import '../../styles/blog.css';
+
+const posts = await getPublishedPosts();
+---
+
+<BaseLayout
+  title="Journal | Toastery — Gate 21"
+  description={journal.intro}
+>
+  <div class="container blog-hero reveal">
+    <p class="label">{journal.label}</p>
+    <UnderlineHeading as="h1">{journal.title}</UnderlineHeading>
+    <span class="underline underline--full" aria-hidden="true"></span>
+    <p class="blog-intro">{journal.intro}</p>
+  </div>
+  <div class="container blog-grid">
+    {posts.map((post, i) => (
+      <PostCard post={post} featured={i === 0} />
+    ))}
+  </div>
+</BaseLayout>

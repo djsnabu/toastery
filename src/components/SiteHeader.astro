@@ -1,0 +1,100 @@
+---
+import { site } from '../content/copy.en';
+
+interface Props {
+  variant?: 'light' | 'dark';
+}
+
+const { variant = 'light' } = Astro.props;
+const isDark = variant === 'dark';
+const logoSrc = isDark
+  ? '/images/logo/logo-white-underline.png'
+  : '/images/logo/logo-black-underline.png';
+---
+
+<header class:list={['site-header', isDark && 'site-header--dark']}>
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__logo">
+      <img
+        src={logoSrc}
+        alt="Toastery"
+        width="220"
+        height="48"
+        fetchpriority="high"
+      />
+    </a>
+    <nav class="site-header__nav" aria-label="Main">
+      <a href="/blog">Blog</a>
+      <a href="/#find-us">Find us</a>
+      <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+        Instagram
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+    background: rgba(251, 248, 249, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(5, 5, 5, 0.06);
+  }
+
+  .site-header--dark {
+    background: rgba(5, 5, 5, 0.85);
+    border-bottom-color: rgba(251, 248, 249, 0.08);
+  }
+
+  .site-header--dark .site-header__nav a {
+    color: var(--toastery-white);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .site-header__logo img {
+    height: 36px;
+    width: auto;
+  }
+
+  .site-header__nav {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .site-header__nav a {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--toastery-black);
+  }
+
+  .site-header__nav a:hover {
+    color: var(--toastery-charcoal);
+  }
+
+  .site-header--dark .site-header__nav a:hover {
+    color: var(--toastery-pink);
+  }
+
+  @media (max-width: 520px) {
+    .site-header__nav a:not(:last-child) {
+      display: none;
+    }
+
+    .site-header__nav {
+      gap: 0;
+    }
+  }
+</style>

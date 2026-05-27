@@ -1,0 +1,99 @@
+---
+import { hero } from '../content/copy.en';
+---
+
+<section class="hero grain">
+  <img
+    class="hero__bg"
+    src="/images/hero/toastery-bar.png"
+    alt="Toastery Bar interior with neon sign"
+    width="1024"
+    height="1024"
+    fetchpriority="high"
+    loading="eager"
+  />
+  <div class="hero__overlay"></div>
+  <div class="hero__badge badge-24h">{hero.badge}</div>
+  <div class="container hero__content reveal">
+    <img
+      class="hero__logo"
+      src="/images/logo/logo-white-underline.png"
+      alt="Toastery"
+      width="320"
+      height="70"
+    />
+    <p class="label label--light hero__label">{hero.label}</p>
+    <p class="hero__headline">{hero.headline}</p>
+    <p class="hero__subline">{hero.subline}</p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: min(92vh, 900px);
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: var(--space-2xl);
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(5, 5, 5, 0.35) 0%,
+      rgba(74, 52, 56, 0.55) 45%,
+      rgba(5, 5, 5, 0.88) 100%
+    );
+  }
+
+  .hero__badge {
+    position: absolute;
+    top: calc(var(--header-height) + 1rem);
+    right: 1rem;
+    z-index: 2;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    padding-top: var(--space-xl);
+  }
+
+  .hero__logo {
+    width: min(280px, 70vw);
+    height: auto;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero__label {
+    margin: 0 0 var(--space-sm);
+  }
+
+  .hero__headline {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--toastery-white);
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  .hero__subline {
+    margin: var(--space-md) 0 0;
+    max-width: 36ch;
+    color: rgba(251, 248, 249, 0.88);
+    font-size: 1.125rem;
+  }
+</style>

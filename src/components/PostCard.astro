@@ -1,0 +1,39 @@
+---
+import { tagLabels } from '../content/copy.en';
+import { formatDate } from '../utils/blog';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props;
+const { title, pubDate, tag, coverImage, description } = post.data;
+---
+
+<a href={`/blog/${post.id}/`} class:list={['post-card', featured && 'post-card--featured']}>
+  <img
+    class="post-card__image"
+    src={coverImage}
+    alt={title}
+    width={800}
+    height={600}
+    loading="lazy"
+  />
+  <div class="post-card__body">
+    <span class="post-card__tag">{tagLabels[tag] ?? tag}</span>
+    <h2 class="post-card__title">{title}</h2>
+    <p class="post-card__date">{formatDate(pubDate)}</p>
+    {featured && <p class="post-card__desc">{description}</p>}
+  </div>
+</a>
+
+<style>
+  .post-card__desc {
+    margin: 0.5rem 0 0;
+    font-size: 0.9375rem;
+    color: var(--toastery-grey);
+    line-height: 1.5;
+  }
+</style>

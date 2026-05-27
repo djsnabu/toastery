@@ -1,17 +1,42 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SplitSection from '../components/SplitSection.astro';
+import MapCta from '../components/MapCta.astro';
+import LatestPosts from '../components/LatestPosts.astro';
+import SocialStrip from '../components/SocialStrip.astro';
+import { cafe, bar, terrace } from '../content/copy.en';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <Hero />
+  <SplitSection
+    label={cafe.label}
+    title={cafe.title}
+    image="/images/sections/toast-before-boarding.png"
+    imageAlt="Toast sandwich and juice at Toastery"
+    theme="green"
+    points={cafe.points}
+  />
+  <SplitSection
+    label={bar.label}
+    title={bar.title}
+    image="/images/sections/cocktail-before-takeoff.png"
+    imageAlt="Cocktail on the bar at Toastery"
+    theme="dark"
+    reverse
+    points={bar.points}
+  />
+  <SplitSection
+    label={terrace.label}
+    title={terrace.title}
+    image="/images/sections/terrace.png"
+    imageAlt="Toastery terrace at Helsinki Airport"
+    theme="light"
+    body={terrace.line}
+    badge={terrace.badge}
+  />
+  <MapCta />
+  <LatestPosts />
+  <SocialStrip />
+</BaseLayout>

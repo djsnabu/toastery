@@ -1,0 +1,57 @@
+---
+import UnderlineHeading from './UnderlineHeading.astro';
+import { findUs, site } from '../content/copy.en';
+---
+
+<section id="find-us" class="find section section--black grain">
+  <div class="container find__inner reveal">
+    <p class="label label--light">{findUs.label}</p>
+    <UnderlineHeading as="h2" class="find__title">
+      {findUs.title}
+    </UnderlineHeading>
+    <p class="find__hours">{findUs.hours}</p>
+    <p class="find__location">{site.location}</p>
+    <div class="find__actions">
+      <a class="btn btn--primary" href={site.finaviaMap} target="_blank" rel="noopener noreferrer">
+        {findUs.ctaMap}
+      </a>
+      <a class="btn btn--ghost" href={site.finaviaPage} target="_blank" rel="noopener noreferrer">
+        {findUs.ctaFinavia}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .find {
+    position: relative;
+  }
+
+  .find__title {
+    color: var(--toastery-white);
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-top: 0.25rem;
+  }
+
+  .find__hours {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--toastery-pink);
+    margin: var(--space-md) 0 0.25rem;
+  }
+
+  .find__location {
+    margin: 0 0 var(--space-lg);
+    color: rgba(251, 248, 249, 0.75);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .find__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+</style>

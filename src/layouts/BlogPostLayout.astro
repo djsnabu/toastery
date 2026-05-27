@@ -1,0 +1,56 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import UnderlineHeading from '../components/UnderlineHeading.astro';
+import { journal, site, tagLabels } from '../content/copy.en';
+import { formatDate } from '../utils/blog';
+import '../styles/blog.css';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  tag: string;
+  coverImage: string;
+}
+
+const { title, description, pubDate, tag, coverImage } = Astro.props;
+---
+
+<BaseLayout title={`${title} | Toastery Journal`} description={description}>
+  <article>
+    <img
+      class="article-cover"
+      src={coverImage}
+      alt={title}
+      width={1200}
+      height={675}
+      loading="eager"
+    />
+    <div class="container">
+      <header class="article-header">
+        <p class="label">{tagLabels[tag] ?? tag}</p>
+        <UnderlineHeading as="h1" underlineFull>
+          {title}
+        </UnderlineHeading>
+        <div class="article-meta">
+          <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{site.location}</span>
+        </div>
+      </header>
+      <div class="article-body">
+        <slot />
+      </div>
+      <div class="article-cta">
+        <p>
+          <a class="link-arrow" href="/blog">{journal.backToJournal}</a>
+        </p>
+        <p style="margin-top: 1.5rem">
+          <a class="btn btn--dark" href={site.finaviaMap} target="_blank" rel="noopener noreferrer">
+            {journal.findCta}
+          </a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

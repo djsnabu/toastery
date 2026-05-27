@@ -1,0 +1,127 @@
+---
+import UnderlineHeading from './UnderlineHeading.astro';
+
+interface Props {
+  label: string;
+  title: string;
+  image: string;
+  imageAlt: string;
+  theme?: 'light' | 'dark' | 'green';
+  reverse?: boolean;
+  points?: string[];
+  body?: string;
+  badge?: string;
+}
+
+const {
+  label,
+  title,
+  image,
+  imageAlt,
+  theme = 'light',
+  reverse = false,
+  points,
+  body,
+  badge,
+} = Astro.props;
+
+const themeClass = {
+  light: 'split--light',
+  dark: 'split--dark section--dark grain',
+  green: 'split--green section--green-accent',
+}[theme];
+---
+
+<section class:list={['split section', themeClass]}>
+  <div class="container split__grid" class:list={{ 'split__grid--reverse': reverse }}>
+    <div class="split__media">
+      <img src={image} alt={imageAlt} width="1200" height="900" loading="lazy" />
+    </div>
+    <div class="split__content">
+      <p class:list={['label', theme === 'dark' && 'label--light']}>{label}</p>
+      <UnderlineHeading as="h2" underlineFull>
+        {title}
+      </UnderlineHeading>
+      {badge && <p class="split__badge badge-24h">{badge}</p>}
+      {body && <p class="split__body">{body}</p>}
+      {
+        points && (
+          <ul class="split__list">
+            {points.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .split__grid {
+    display: grid;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .split__grid {
+      grid-template-columns: 58fr 42fr;
+      gap: var(--space-xl);
+    }
+
+    .split__grid--reverse .split__media {
+      order: 2;
+    }
+
+    .split__grid--reverse .split__content {
+      order: 1;
+    }
+  }
+
+  .split__media img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .split--dark .split__content .heading-serif {
+    color: var(--toastery-white);
+  }
+
+  .split__content .heading-serif {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-top: 0.25rem;
+  }
+
+  .split__badge {
+    margin-top: var(--space-md);
+  }
+
+  .split__body {
+    margin-top: var(--space-md);
+    max-width: 40ch;
+  }
+
+  .split--dark .split__body {
+    color: rgba(251, 248, 249, 0.88);
+  }
+
+  .split__list {
+    margin: var(--space-md) 0 0;
+    padding-left: 1.1rem;
+    max-width: 42ch;
+  }
+
+  .split--dark .split__list {
+    color: rgba(251, 248, 249, 0.9);
+  }
+
+  .split__list li {
+    margin-bottom: 0.65rem;
+  }
+
+  .split--green .split__media img {
+    aspect-ratio: 1;
+  }
+</style>

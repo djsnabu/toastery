@@ -1,0 +1,43 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  headerVariant?: 'light' | 'dark';
+}
+
+const {
+  title = 'Toastery — Cafe, Bar & Terrace | Gate 21, Helsinki Airport',
+  description = 'Open 24h at Gate 21. Coffee, toasts, cocktails and the only airport terrace — your Schengen-side stop before takeoff.',
+  headerVariant = 'light',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero/toastery-bar.png"
+      fetchpriority="high"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <SiteHeader variant={headerVariant} />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

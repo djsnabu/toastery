@@ -1,0 +1,43 @@
+---
+import { site } from '../content/copy.en';
+---
+
+<section class="social section">
+  <div class="container social__inner">
+    <p class="label">Follow</p>
+    <p class="social__handle">
+      <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+        {site.instagramHandle}
+      </a>
+    </p>
+    <p class="social__tag">{site.hashtag}</p>
+  </div>
+</section>
+
+<style>
+  .social {
+    padding-block: var(--space-xl);
+    background: var(--toastery-white);
+    border-top: 1px solid rgba(5, 5, 5, 0.08);
+  }
+
+  .social__handle {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 0.25rem 0;
+  }
+
+  .social__handle a {
+    text-decoration: none;
+  }
+
+  .social__handle a:hover {
+    color: var(--toastery-charcoal);
+  }
+
+  .social__tag {
+    margin: 0;
+    color: var(--toastery-grey);
+    font-size: 0.9375rem;
+  }
+</style>

@@ -1,0 +1,14 @@
+---
+interface Props {
+  as?: 'h1' | 'h2' | 'h3';
+  class?: string;
+  underlineFull?: boolean;
+}
+
+const { as: Tag = 'h2', class: className, underlineFull = false } = Astro.props;
+---
+
+<Tag class:list={['heading-serif', className]}>
+  <slot />
+  <span class:list={['underline', underlineFull && 'underline--full']} aria-hidden="true"></span>
+</Tag>
