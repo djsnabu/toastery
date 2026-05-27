@@ -18,13 +18,25 @@ npm run preview
 
 Content workflow for Nice Media: see [CONTENT.md](./CONTENT.md).
 
-## Deploy
+## Deploy (Cloudflare Pages)
 
-Static output in `dist/`. Suitable for Cloudflare Pages, Netlify, or any static host:
+### Option A — Git integration (recommended)
+
+1. Push this repo to GitHub (`djsnabu/toastery`).
+2. Cloudflare Dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
+3. Select repo and set:
+   - **Build command:** `npm run build`
+   - **Build output directory:** `dist`
+   - **Node version:** 22 (`.node-version` is included)
+4. Deploy. Add custom domain (e.g. `toastery.fi`) under **Custom domains**.
+5. Update `site` in `astro.config.mjs` to match production URL.
+
+### Option B — CLI deploy
 
 ```bash
-npm run build
-# Publish dist/
+npm install -D wrangler@latest
+npx wrangler login
+npm run deploy
 ```
 
-Set build command `npm run build` and output directory `dist`. Update `site` in `astro.config.mjs` when the production URL is known.
+First run may prompt to create the Pages project `toastery`.
