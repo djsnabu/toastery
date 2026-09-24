@@ -3,7 +3,7 @@ title: 'Toast of the week: sandwich & wine'
 description: 'Fresh toast before your flight at Gate 21.'
 pubDate: 2026-05-13
 tag: toast
-coverImage: /images/blog/toast-wine.jpg
+coverImage: /images/blog/shrimp-salad-wine.jpg
 draft: false
 ---
 

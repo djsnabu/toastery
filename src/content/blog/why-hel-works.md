@@ -3,7 +3,7 @@ title: "Why HEL works: a small airport that feels world-class"
 description: "Helsinki Airport keeps winning passenger-experience awards — here’s what you feel as a traveller (and why it matters)."
 pubDate: 2026-05-27
 tag: coffee
-coverImage: /images/blog/helsinki-airport.png
+coverImage: /images/blog/toastery-cafe-interior.jpg
 draft: false
 ---
 

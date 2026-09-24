@@ -16,7 +16,7 @@ const posts = (await getPublishedPosts()).slice(0, 3);
         <p class="latest__intro">{journal.intro}</p>
         <div class="latest__grid">
           {posts.map((post, i) => (
-            <PostCard post={post} featured={i === 0} />
+            <PostCard post={post} featured={i === 0} showImage={false} />
           ))}
         </div>
         <p class="latest__more">
@@ -48,17 +48,7 @@ const posts = (await getPublishedPosts()).slice(0, 3);
 
   @media (min-width: 768px) {
     .latest__grid {
-      grid-template-columns: 1.2fr 1fr 1fr;
-    }
-
-    .latest__grid :global(.post-card:first-child) {
-      grid-row: span 2;
-    }
-
-    .latest__grid :global(.post-card:first-child .post-card__image) {
-      aspect-ratio: 3 / 4;
-      min-height: 100%;
-      object-fit: cover;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 

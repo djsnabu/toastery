@@ -6,21 +6,33 @@ import type { CollectionEntry } from 'astro:content';
 interface Props {
   post: CollectionEntry<'blog'>;
   featured?: boolean;
+  showImage?: boolean;
 }
 
-const { post, featured = false } = Astro.props;
+const { post, featured = false, showImage = true } = Astro.props;
 const { title, pubDate, tag, coverImage, description } = post.data;
 ---
 
-<a href={`/blog/${post.id}/`} class:list={['post-card', featured && 'post-card--featured']}>
-  <img
-    class="post-card__image"
-    src={coverImage}
-    alt={title}
-    width={800}
-    height={600}
-    loading="lazy"
-  />
+<a
+  href={`/blog/${post.id}/`}
+  class:list={[
+    'post-card',
+    featured && 'post-card--featured',
+    !showImage && 'post-card--text-only',
+  ]}
+>
+  {
+    showImage && (
+      <img
+        class="post-card__image"
+        src={coverImage}
+        alt={title}
+        width={800}
+        height={600}
+        loading="lazy"
+      />
+    )
+  }
   <div class="post-card__body">
     <span class="post-card__tag">{tagLabels[tag] ?? tag}</span>
     <h2 class="post-card__title">{title}</h2>
@@ -30,6 +42,15 @@ const { title, pubDate, tag, coverImage, description } = post.data;
 </a>
 
 <style>
+  .post-card--text-only {
+    border-top: 1px solid rgba(5, 5, 5, 0.12);
+    padding-top: var(--space-md);
+  }
+
+  .post-card--text-only .post-card__body {
+    padding-top: 0;
+  }
+
   .post-card__desc {
     margin: 0.5rem 0 0;
     font-size: 0.9375rem;
